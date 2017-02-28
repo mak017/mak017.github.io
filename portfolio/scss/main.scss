@@ -1,0 +1,339 @@
+@import 'compass';
+
+$randomAngle: random(4) * 45;
+
+@mixin random-color {
+	background: linear-gradient(#{$randomAngle}deg, unquote("rgba(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1}, 1)"), unquote("rgba(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1}, 1)"));
+}
+@mixin breakpoint($max-width) {
+	@media (max-width: $max-width) {
+		@content;
+	}
+}
+
+@include global-reset;
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Lora', sans-serif;
+}
+
+.landing {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	@include random-color;
+	background-attachment: fixed;
+	text-align: center;
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: rgba(0,0,0, 0.4);
+		z-index: 100;
+	}
+	@include breakpoint(800px) {
+		width: auto;
+		background-attachment: scroll;
+	}
+}
+
+.title {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: -50px;
+	color: #fff;
+	font-size: 50px;
+	z-index: 200;
+	h2 {
+		font-size: 15px;
+		font-weight: 200;
+		letter-spacing: 2px;
+	}
+	@include breakpoint(800px) {
+		font-size: 30px;
+	}
+}
+
+.links {
+	position: fixed;
+	@include display-flex;
+	@include justify-content(center);
+	@include align-items(center);
+	width: 100%;
+	height: 100vh;
+	margin-top: 60px;
+	color: #000;
+	font-size: 15px;
+	z-index: 200;
+	ul {
+		width: 400px;
+		border-top: 2px solid #fff;
+		a {
+			display: inline-block;
+			margin: 10px;
+			color: #fff;
+			letter-spacing: 3px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+	}
+	@include breakpoint(800px) {
+		ul {
+			width: 300px;
+			border-top: 1px solid white;
+		}
+	}
+}
+
+.about {
+	height: 500px;
+	background-color: #0E3E4E;
+	color: #fff8e1;
+	&-wrapper {
+		position: relative;
+		@include display-flex;
+		@include justify-content(center);
+		@include align-items(center);
+		width: 100%;
+	}
+	&-inner {
+		@include display-flex;
+		@include flex-direction(column);
+		@include justify-content(center);
+		@include align-items(center);
+		width: 70%;
+		height: 500px;
+		overflow: hidden;
+		z-index: 99;
+		p {
+			margin: 5px 0;
+			font-size: 20px;
+			font-weight: 200;
+			line-height: 30px;
+			letter-spacing: 1px;
+			text-indent: 35px;
+			a {
+				padding: 0 5px;
+				background-color: #fff8e1;
+				color: #0E3E4E;
+				font-size: 17px;
+				font-weight: 300;
+				text-decoration: none;
+			}
+		}
+	}
+	@include breakpoint(800px) {
+		height: auto;
+		&-wrapper {
+			padding: 5% 0;
+		}
+		&-inner {
+			height: auto;
+		}
+		p {
+			font-size: 15px;
+			line-height: 25px;
+		}
+	}
+	@include breakpoint(400px) {
+		&-inner {
+			width: 80%;
+		}
+		&-wrapper {
+			padding: 5% 0;
+		}
+		p {
+			line-height: 20px;
+			text-indent: 0;
+		}
+	}
+}
+
+.projects-wrapper {
+	@include display-flex;
+	@include flex-direction(column);
+	@include justify-content(center);
+	@include align-items(center);
+	width: 100%;
+	height: auto;
+	padding: 5% 0;
+	background: #C6DABF;
+}
+
+.projects-inner {
+	@include display-flex;
+	@include flex-flow(row wrap);
+	@include justify-content(center);
+	@include align-items(center);
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+	a {
+		position: relative;
+		margin: 5px;
+		color: #fff;
+		text-align: center;
+		&:hover .layer {
+			opacity: 1;
+			background-color: rgba(0,0,0, 0.7);
+		}
+	}
+	img {
+		width: 400px;
+		height: 270px;
+	}
+	.layer {
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		padding: 5%;
+		@include transition(opacity .4s);
+		h3 {
+			margin-bottom: 20px;
+			font-size: 25px;
+			font-weight: 700;
+			line-height: 30px;
+		}
+	}
+	@include breakpoint(420px) {
+		width: 90%;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
+
+.big-title {
+	margin: 2%;
+	padding-bottom: .9%;
+	border-bottom: 1px solid #0E3E4E;
+	color: #0E3E4E;
+	font-size: 40px;
+	font-weight: 200;
+	letter-spacing: 1px;
+	@include breakpoint(800px) {
+		font-size: 30px;
+		text-align: center;
+	}
+}
+
+.contact-wrapper {
+	@include display-flex;
+	@include justify-content(center);
+	@include align-items(center);
+	width: 100%;
+	padding: 3% 0;
+	background: #0E3E4E;
+	color: #fff8e1;
+	@include breakpoint(800px) {
+		height: auto;
+		text-align: center;
+	}
+}
+
+.contact-inner {
+	.resume {
+		margin-bottom: 25px;
+		font-size: 35px;
+		text-align: center;
+	}
+	.contacts {
+		@include display-flex;
+		@include justify-content(center);
+		@include align-items(center);
+	}
+	a {
+		width: 80%;
+		margin: 15px;
+		color: #fff8e1;
+		text-decoration: none;
+	}
+	@include breakpoint(800px) {
+		display: block;
+		width: auto;
+		margin: 10% 3%;
+		a {
+			display: block;
+			margin: 25px 0;
+		}
+	}
+}
+
+footer {
+	height: 30px;
+	padding-top: 15px;
+	font-size: 12px;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+// Mosaic generator
+// Taken from http://codepen.io/tadaima/pen/ryNWpe
+@function alpha-random() {
+    @return random(10) / 100;
+}
+
+$colorList: (
+    rgba(white, alpha-random()),
+    rgba(white, alpha-random()),
+    rgba(white, alpha-random()),
+    rgba(white, alpha-random())
+);
+
+$factorSize: 3vw;
+
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
+
+@function buildColors($list){
+    $thisColor: '';
+    $newGradient: ();
+    @for $i from 1 through 50 {
+        $thisColor: nth($list,random(length($list)));
+        $newGradient: append($newGradient, ($thisColor (($i - 1)*$factorSize), $thisColor ($i*$factorSize)), 'comma');
+    }
+    @return $newGradient;
+}
+
+@mixin buildPattern($list) {
+    $bgPositions: ();
+    $bgPattern: ();
+    @for $i from 0 through 50 {
+        $bgPositions: append($bgPositions, (0 ($i * $factorSize)), 'comma');
+        $bgPattern: append($bgPattern, linear-gradient(90deg, buildColors($list)), 'comma');
+    }
+    background-image:       $bgPattern;
+    background-position:    $bgPositions;
+    background-size:        100% $factorSize;
+    background-repeat:      no-repeat;
+    background-blend-mode: 	soft-light;
+}
+
+.mosaic {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+    @include buildPattern($colorList);
+		@include breakpoint(400px) {
+			display: none;
+		}
+}
