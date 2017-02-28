@@ -4,3 +4,6 @@
 [submodule "Project-Places"]
 	path = Project-Places
 	url = https://github.com/mak017/Project-Places.git
+[submodule "oss-test-front-end"]
+	path = oss-test-front-end
+	url = https://github.com/mak017/oss-test.git
