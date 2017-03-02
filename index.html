@@ -3,6 +3,63 @@
 
 <head>
   <title>Portfolio</title>
+  <style>
+    .landing {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+    }
+      .landing::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0,0,0, 0.4);
+        z-index: 100;
+      }
+    .title {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      margin: 0 auto;
+      margin-top: -50px;
+      color: #fff;
+      font-size: 50px;
+      z-index: 200;
+    }
+      .title h2 {
+        font-size: 15px;
+        font-weight: 200;
+        letter-spacing: 2px;
+      }
+    .links {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      margin-top: 60px;
+      color: #000;
+      font-size: 15px;
+      z-index: 200;
+    }
+      .links ul {
+        width: 400px;
+        border-top: 2px solid #fff;
+      }
+        .links ul a {
+          display: inline-block;
+          margin: 10px;
+          color: #fff;
+          letter-spacing: 3px;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+  </style>
   <script async onload="init()" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script async src="portfolio/js/main.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
