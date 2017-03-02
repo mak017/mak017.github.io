@@ -1,4 +1,9 @@
 function init() {
+
+	$("head").append('<link href="https://fonts.googleapis.com/css?family=Lora:400,700&amp;subset=cyrillic" rel="stylesheet">');
+		$("head").append('<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
+		$("head").append('<link rel="stylesheet" type="text/css" href="portfolio/styles/main.css">');
+
 	$(window).scroll(function() {
 		var yScroll = $(this).scrollTop();
 		var opacity, z;
@@ -11,12 +16,7 @@ function init() {
 		$(".links").css({ "opacity": opacity, "z-index": z}); 
 	});
 
-
 	$(document).ready(function(){
-
-		$("head").append('<link href="https://fonts.googleapis.com/css?family=Lora:400,700&amp;subset=cyrillic" rel="stylesheet">');
-		$("head").append('<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
-		$("head").append('<link rel="stylesheet" type="text/css" href="portfolio/styles/main.css">');
 
 		$(".links ul a").click(function(){
 			var $href = $(this).attr("href");
