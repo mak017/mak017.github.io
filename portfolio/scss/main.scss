@@ -77,9 +77,11 @@ body {
 	ul {
 		width: 400px;
 		border-top: 2px solid #fff;
-		a {
+		li {
 			display: inline-block;
 			margin: 10px;
+		}
+		a {
 			color: #fff;
 			letter-spacing: 3px;
 			text-decoration: none;
