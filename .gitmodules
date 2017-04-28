@@ -10,3 +10,6 @@
 [submodule "grossum-test"]
 	path = grossum-test
 	url = https://github.com/mak017/Grossum-Test.git
+[submodule "1Platforma-Energy-Audit"]
+	path = 1Platforma-Energy-Audit
+	url = https://github.com/mak017/1Platforma-Energy-Audit.git
