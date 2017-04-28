@@ -13,3 +13,6 @@
 [submodule "1Platforma-Energy-Audit"]
 	path = 1Platforma-Energy-Audit
 	url = https://github.com/mak017/1Platforma-Energy-Audit.git
+[submodule "1Platforma-energy-audit"]
+	path = 1Platforma-energy-audit
+	url = https://github.com/mak017/1Platforma-Energy-Audit.git
