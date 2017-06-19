@@ -1,0 +1,417 @@
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/LatoBold.woff2") format("woff2"), url("../fonts/LatoBold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/LatoRegular.woff2") format("woff2"), url("../fonts/LatoRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/RobotoBold.woff2") format("woff2"), url("../fonts/RobotoBold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/RobotoRegular.woff2") format("woff2"), url("../fonts/RobotoRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=");
+  color: #333;
+  font: 15px/1.2 Roboto, sans-serif;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #000;
+  font: 700 42px/1.08 Lato, sans-serif;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-bottom: 20px;
+  border-bottom: 3px solid #000;
+  font: 700 28px/1.08 Lato, sans-serif;
+  text-transform: uppercase;
+}
+
+h3 {
+  font: 21px/1.08 Lato, sans-serif;
+}
+
+h4 {
+  margin-bottom: 9px;
+  color: #00b400;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+section {
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #cccccc;
+}
+
+section h3 {
+  margin-bottom: 7px;
+  color: #000;
+}
+
+section ul:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+section ul:not(:first-child) {
+  margin-top: 7px;
+}
+
+section li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+section .date-range {
+  font-size: 11px;
+}
+
+section .date-range:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+section .date-range span {
+  margin-left: 5px;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  grid-gap: 30px;
+  width: 940px;
+  height: 1330px;
+  margin: 13px auto;
+  padding: 70px;
+  background: url("../images/bg2.png") center center/cover #fff;
+  box-shadow: 1px 1px 3px 1px #333;
+}
+
+.page.first {
+  grid-template-rows: 160px 140px 245px 100px 135px 0 130px 65px;
+}
+
+.page.second {
+  grid-auto-rows: minmax(50px, 450px);
+}
+
+.main-info {
+  grid-row: 2 / 4;
+}
+
+.skills {
+  grid-row: 3 / 5;
+}
+
+.education {
+  grid-row: 4 / 6;
+}
+
+.first .experience {
+  grid-row: 6 / 9;
+}
+
+.technologies {
+  grid-row: 5 / 7;
+}
+
+.courses {
+  grid-column-start: 2;
+  grid-row-start: 7;
+}
+
+main {
+  font-weight: 700;
+}
+
+main h3 {
+  margin-bottom: 20px;
+  color: #00b400;
+}
+
+main .contacts {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 12px;
+}
+
+main .contacts li {
+  position: relative;
+  width: 50%;
+  margin-bottom: 10px;
+  padding-left: 15px;
+}
+
+main .contacts i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #00b400;
+}
+
+main .contacts a {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.photo {
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: url("../images/photo_small2.png") 0 13%/cover;
+}
+
+.languages .block-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.languages__title {
+  margin-right: auto;
+}
+
+.languages__title div:first-of-type {
+  margin-bottom: 10px;
+  color: #000;
+  font-weight: 700;
+}
+
+.languages__title div:last-of-type {
+  color: gray;
+  font-size: 13px;
+}
+
+.languages__level span {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.languages__level span.filled {
+  background-color: #00b400;
+}
+
+.skill {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.skill:not(:last-child) {
+  border-bottom: 1px dashed #cccccc;
+}
+
+.skill__level {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background-color: #cccccc;
+  border-radius: 3px;
+}
+
+.skill__level::before, .skill__level::after {
+  content: '';
+  position: absolute;
+}
+
+.skill__level::before {
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #000;
+  border-radius: inherit;
+}
+
+.skill.html-css .skill__level::before {
+  width: 70%;
+}
+
+.skill.js-jquery .skill__level::before {
+  width: 40%;
+}
+
+.skill.sass .skill__level::before {
+  width: 60%;
+}
+
+.skill.bootstrap .skill__level::before {
+  width: 50%;
+}
+
+.skill.sql .skill__level::before {
+  width: 20%;
+}
+
+.skill__level::after {
+  top: -3px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #00b400;
+}
+
+.skill.html-css .skill__level::after {
+  left: calc(70% - 13px / 2);
+}
+
+.skill.js-jquery .skill__level::after {
+  left: calc(40% - 13px / 2);
+}
+
+.skill.sass .skill__level::after {
+  left: calc(60% - 13px / 2);
+}
+
+.skill.bootstrap .skill__level::after {
+  left: calc(50% - 13px / 2);
+}
+
+.skill.sql .skill__level::after {
+  left: calc(20% - 13px / 2);
+}
+
+.education .institution {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+.education .institution:not(:last-child) {
+  border-bottom: 1px dashed #cccccc;
+}
+
+.education .gpa {
+  width: 30%;
+  margin-left: auto;
+  border-left: 1px solid #000;
+  color: gray;
+  text-align: center;
+  word-spacing: 6px;
+}
+
+.education .gpa__title {
+  font-size: 11px;
+}
+
+.education .gpa span {
+  color: #00b400;
+  font-weight: 700;
+}
+
+.experience,
+.courses {
+  font-size: 13px;
+}
+
+.job {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+.job:not(:last-child) {
+  border-bottom: 1px dashed #cccccc;
+}
+
+.tech {
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  padding: 7px 10px;
+  border: 1px solid #cccccc;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media print {
+  .page {
+    height: 1300px;
+  }
+}

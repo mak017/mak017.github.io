@@ -1,357 +1,441 @@
 @import 'compass';
 
-$randomAngle: random(4) * 45;
-
-@mixin random-color {
-	background: linear-gradient(#{$randomAngle}deg, unquote("rgba(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1}, 1)"), unquote("rgba(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1}, 1)"));
+@function random-color() {
+  @return unquote('rgb(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1})');
 }
+
+// Variables
+$black: #000;
+$white: #fff;
+$layer1: rgba(0, 0, 0, .4);
+$layer2: rgba(0, 0, 0, .7);
+$primary-color: random-color(); // #0e3e4e
+$secondary-color: random-color();
+$white-text: #fff8e1;
+$projects-bg-color: $secondary-color; // #c6dabf
+$link-hover: $secondary-color; // rgb(0, 148, 255)
+
+$random-angle: random(4) * 45;
+
+@mixin random-gradient {
+  background: linear-gradient(#{$random-angle}deg, $primary-color, $secondary-color);
+}
+
 @mixin breakpoint($max-width) {
-	@media (max-width: $max-width) {
-		@content;
-	}
+  @media (max-width: $max-width) {
+    @content;
+  }
 }
 
 @include global-reset;
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	font-family: 'Lora', sans-serif;
+  font-family: 'Lora', sans-serif;
 }
 
 .landing {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	@include random-color;
-	background-attachment: fixed;
-	text-align: center;
-	&::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100vh;
-		background-color: rgba(0,0,0, 0.4);
-		z-index: 100;
-	}
-	@include breakpoint(800px) {
-		width: auto;
-		background-attachment: scroll;
-	}
+  @include random-gradient;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  text-align: center;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: $layer1;
+    content: '';
+    z-index: 100;
+  }
+
+  @include breakpoint(800px) {
+    width: auto;
+    background-attachment: scroll;
+  }
 }
 
 .title {
-	position: absolute;
-	top: 50%;
-	width: 100%;
-	margin: 0 auto;
-	margin-top: -50px;
-	color: #fff;
-	font-size: 50px;
-	z-index: 200;
-	h2 {
-		font-size: 15px;
-		font-weight: 200;
-		letter-spacing: 2px;
-	}
-	@include breakpoint(800px) {
-		font-size: 30px;
-	}
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: -50px;
+  color: $white;
+  font-size: 50px;
+  z-index: 200;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 200;
+    letter-spacing: 2px;
+  }
+
+  @include breakpoint(800px) {
+    font-size: 30px;
+  }
 }
 
 .links {
-	position: fixed;
-	@include display-flex;
-	@include justify-content(center);
-	@include align-items(center);
-	width: 100%;
-	height: 100vh;
-	margin-top: 60px;
-	color: #000;
-	font-size: 15px;
-	z-index: 200;
-	ul {
-		width: 400px;
-		border-top: 2px solid #fff;
-		li {
-			display: inline-block;
-			margin: 10px;
-		}
-		a {
-			color: #fff;
-			letter-spacing: 3px;
-			text-decoration: none;
-			text-transform: uppercase;
-		}
-	}
-	@include breakpoint(800px) {
-		ul {
-			width: 300px;
-			border-top: 1px solid white;
-		}
-	}
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  margin-top: 60px;
+  color: $black;
+  font-size: 15px;
+  z-index: 200;
+
+  ul {
+    width: 400px;
+    border-top: 2px solid $white;
+
+    li {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    a {
+      color: $white;
+      letter-spacing: 3px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  @include breakpoint(800px) {
+    ul {
+      width: 300px;
+      border-top: 1px solid $white;
+    }
+  }
 }
 
 .about {
-	height: 500px;
-	background-color: #0E3E4E;
-	color: #fff8e1;
-	&-wrapper {
-		position: relative;
-		@include display-flex;
-		@include justify-content(center);
-		@include align-items(center);
-		width: 100%;
-	}
-	&-inner {
-		@include display-flex;
-		@include flex-direction(column);
-		@include justify-content(center);
-		@include align-items(center);
-		width: 70%;
-		height: 500px;
-		overflow: hidden;
-		z-index: 99;
-		p {
-			margin: 5px 0;
-			font-size: 20px;
-			font-weight: 200;
-			line-height: 30px;
-			letter-spacing: 1px;
-			text-indent: 35px;
-			a {
-				padding: 0 5px;
-				background-color: #fff8e1;
-				color: #0E3E4E;
-				font-size: 17px;
-				font-weight: 300;
-				text-decoration: none;
-			}
-		}
-	}
-	@include breakpoint(800px) {
-		height: auto;
-		&-wrapper {
-			padding: 5% 0;
-		}
-		&-inner {
-			height: auto;
-		}
-		p {
-			font-size: 15px;
-			line-height: 25px;
-		}
-	}
-	@include breakpoint(400px) {
-		&-inner {
-			width: 80%;
-		}
-		&-wrapper {
-			padding: 5% 0;
-		}
-		p {
-			line-height: 20px;
-			text-indent: 0;
-		}
-	}
+  height: 500px;
+  background-color: $primary-color;
+  color: $white-text;
+
+  &-wrapper {
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    position: relative;
+    width: 100%;
+  }
+
+  &-inner {
+    @include display-flex;
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(center);
+    width: 70%;
+    height: 500px;
+    overflow: hidden;
+    z-index: 99;
+
+    p {
+      margin: 5px 0;
+      font-size: 20px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      line-height: 30px;
+      text-indent: 35px;
+
+      a {
+        padding: 0 5px;
+        background-color: $white-text;
+        color: $primary-color;
+        font-size: 17px;
+        font-weight: 300;
+        text-decoration: none;
+      }
+    }
+  }
+
+  @include breakpoint(800px) {
+    height: auto;
+
+    &-wrapper {
+      padding: 5% 0;
+    }
+
+    &-inner {
+      height: auto;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 25px;
+    }
+  }
+
+  @include breakpoint(400px) {
+    &-inner {
+      width: 80%;
+    }
+
+    &-wrapper {
+      padding: 5% 0;
+    }
+
+    p {
+      line-height: 20px;
+      text-indent: 0;
+    }
+  }
 }
 
 .projects-wrapper {
-	@include display-flex;
-	@include flex-direction(column);
-	@include justify-content(center);
-	@include align-items(center);
-	width: 100%;
-	height: auto;
-	padding: 5% 0;
-	background: #C6DABF;
+  @include display-flex;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  height: auto;
+  padding: 5% 0;
+  background-color: $projects-bg-color;
 }
 
 .projects-inner {
-	@include display-flex;
-	@include flex-flow(row wrap);
-	@include justify-content(center);
-	@include align-items(center);
-	width: 80%;
-	height: auto;
-	margin: 0 auto;
-	a {
-		position: relative;
-		margin: 5px;
-		color: #fff;
-		text-align: center;
-		&:hover .layer {
-			opacity: 1;
-			background-color: rgba(0,0,0, 0.7);
-		}
-	}
-	img {
-		width: 400px;
-		height: 270px;
-	}
-	.layer {
-		opacity: 0;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		padding: 5%;
-		@include transition(opacity .4s);
-		h3 {
-			margin-bottom: 20px;
-			font-size: 25px;
-			font-weight: 700;
-			line-height: 30px;
-		}
-	}
-	@include breakpoint(420px) {
-		width: 90%;
-		img {
-			width: 100%;
-			height: auto;
-		}
-		.layer h3 {
-			margin-bottom: 15px;
-			font-size: 20px;
-		}
-	}
+  @include display-flex;
+  @include flex-flow(row wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+
+  a {
+    position: relative;
+    margin: 5px;
+    color: $white;
+    text-align: center;
+
+    &:hover {
+      .layer {
+        background-color: $layer2;
+        opacity: 1;
+      }
+    }
+  }
+
+  img {
+    width: 400px;
+    height: 270px;
+  }
+
+  .layer {
+    @include transition(opacity .4s);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    opacity: 0;
+
+    h3 {
+      margin-bottom: 20px;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 30px;
+    }
+  }
+
+  @include breakpoint(420px) {
+    width: 90%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .layer {
+      h3 {
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+    }
+  }
 }
 
 .big-title {
-	margin: 2%;
-	padding-bottom: .9%;
-	border-bottom: 1px solid #0E3E4E;
-	color: #0E3E4E;
-	font-size: 40px;
-	font-weight: 200;
-	letter-spacing: 1px;
-	@include breakpoint(800px) {
-		font-size: 30px;
-		text-align: center;
-	}
+  margin: 2%;
+  padding-bottom: .9%;
+  border-bottom: 1px solid $primary-color;
+  color: $primary-color;
+  font-size: 40px;
+  font-weight: 200;
+  letter-spacing: 1px;
+
+  @include breakpoint(800px) {
+    font-size: 30px;
+    text-align: center;
+  }
 }
 
 .contact-wrapper {
-	@include display-flex;
-	@include justify-content(center);
-	@include align-items(center);
-	width: 100%;
-	padding: 3% 0;
-	background: #0E3E4E;
-	color: #fff8e1;
-	@include breakpoint(800px) {
-		height: auto;
-		text-align: center;
-	}
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  padding: 3% 0;
+  background: $primary-color;
+  color: $white-text;
+
+  @include breakpoint(800px) {
+    height: auto;
+    text-align: center;
+  }
 }
 
 .contact-inner {
-	.resume {
-		margin-bottom: 25px;
-		font-size: 35px;
-		text-align: center;
-	}
-	.contacts {
-		@include display-flex;
-		@include flex-flow(row wrap);
-		@include justify-content(center);
-		@include align-items(center);
-	}
-	a {
-		margin: 15px;
-		color: #fff8e1;
-		text-decoration: none;
-		@include transition(color .4s);
-		&:hover {
-			color: rgb(0, 148, 255);
-		}
-	}
-	@include breakpoint(800px) {
-		display: block;
-		width: auto;
-		margin: 10% 3%;
-	}
-	@include breakpoint(400px) {
-		.resume {
-			font-size: 25px;
-			text-decoration: underline;
-			.fa {
-				display: none;
-			}
-		}		
-		a {
-			display: block;
-		}
-	}
+  .contacts {
+    @include display-flex;
+    @include flex-flow(row wrap);
+    @include justify-content(center);
+    @include align-items(center);
+  }
+
+  a {
+    @include transition(color .4s);
+    margin: 15px;
+    color: $white-text;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-hover;
+    }
+  }
+
+  @include breakpoint(800px) {
+    display: block;
+    width: auto;
+    margin: 10% 3%;
+  }
+
+  @include breakpoint(400px) {
+    .resume {
+      font-size: 25px;
+    }
+     
+    a {
+      display: block;
+      text-decoration: underline;
+      text-decoration-skip: ink;
+    }
+  }
+}
+
+.resume {
+  margin-bottom: 25px;
+  font-size: 35px;
+  text-align: center;
+
+  &__wrap {
+    display: none;
+    font-size: 18px;
+  }
+
+  &__type {
+    margin: 30px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  &__links {
+    a {
+      display: inline-block;
+      margin: 8px;
+    }
+  }
+}
+
+.fa-chevron-circle-down {
+  @include transition(transform .3s);
+
+  .active & {
+    @include transform(rotate(90deg));
+  }
 }
 
 footer {
-	height: 30px;
-	padding-top: 15px;
-	font-size: 12px;
-	letter-spacing: 2px;
-	text-align: center;
+  height: 30px;
+  padding-top: 15px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
 // Mosaic generator
 // Taken from http://codepen.io/tadaima/pen/ryNWpe
 @function alpha-random() {
-    @return random(10) / 100;
+  @return random(10) / 100;
 }
 
-$colorList: (
-    rgba(white, alpha-random()),
-    rgba(white, alpha-random()),
-    rgba(white, alpha-random()),
-    rgba(white, alpha-random())
+$color-list: (
+  rgba($white, alpha-random()),
+  rgba($white, alpha-random()),
+  rgba($white, alpha-random()),
+  rgba($white, alpha-random())
 );
 
-$factorSize: 3vw;
+$factor-size: 3vw;
 
 @function strip-unit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
-        @return $number / ($number * 0 + 1);
-    }
-    @return $number;
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
 }
 
-@function buildColors($list){
-    $thisColor: '';
-    $newGradient: ();
-    @for $i from 1 through 50 {
-        $thisColor: nth($list,random(length($list)));
-        $newGradient: append($newGradient, ($thisColor (($i - 1)*$factorSize), $thisColor ($i*$factorSize)), 'comma');
+@function build-colors($list) {
+  $this-color: '';
+  $new-gradient: ();
+  @for $i from 1 through 50 {
+    $this-color: nth($list, random(length($list)));
+    $new-gradient: append($new-gradient, ($this-color (($i - 1)*$factor-size), $this-color ($i*$factor-size)), 'comma');
     }
-    @return $newGradient;
+  @return $new-gradient;
 }
 
-@mixin buildPattern($list) {
-    $bgPositions: ();
-    $bgPattern: ();
-    @for $i from 0 through 50 {
-        $bgPositions: append($bgPositions, (0 ($i * $factorSize)), 'comma');
-        $bgPattern: append($bgPattern, linear-gradient(90deg, buildColors($list)), 'comma');
+@mixin build-pattern($list) {
+  $bg-positions: ();
+  $bg-pattern: ();
+  @for $i from 0 through 50 {
+    $bg-positions: append($bg-positions, (0 ($i * $factor-size)), 'comma');
+    $bg-pattern: append($bg-pattern, linear-gradient(90deg, build-colors($list)), 'comma');
     }
-    background-image:       $bgPattern;
-    background-position:    $bgPositions;
-    background-size:        100% $factorSize;
-    background-repeat:      no-repeat;
-    background-blend-mode: 	soft-light;
+  background-image:       $bg-pattern;
+  background-repeat:      no-repeat;
+  background-position:    $bg-positions;
+  background-size:        100% $factor-size;
+  background-blend-mode:  soft-light;
 }
 
 .mosaic {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-    @include buildPattern($colorList);
-		@include breakpoint(400px) {
-			display: none;
-		}
+  @include build-pattern($color-list);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  @include breakpoint(400px) {
+    display: none;
+  }
 }

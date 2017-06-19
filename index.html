@@ -101,7 +101,6 @@
       </ul>
     </div>
   </section>
-  <div class="overlay"></div>
   <section class="about" id="aboutme">
     <div class="about-wrapper">
       <div class="mosaic">
@@ -109,7 +108,7 @@
       <div class="about-inner">
         <p>Меня зовут Денис Маковский. Я — фронт-энд разработчик, пока с небольшим опытом, но с горящими глазами и огромным
           желанием учиться, познавать новые технологии в мире фронт-энда и работать над интересными проектами.</p>
-        <p>Хорошо знаю CSS и SCSS. Говорю и пишу на английском, хотя и делаю ошибки. Люблю верстку: верстаю по макетам, создаю
+        <p>Отлично знаю CSS и SCSS. Дружу с Javascript / jQuery. Говорю и пишу на английском, хотя и делаю ошибки. Люблю верстку: верстаю по макетам, создаю
           простые изображения с использованием чистого CSS. Знаю Bootstrap и другие грид-системы, но всё же предпочитаю верстать
           без использования фреймворков. Адаптивная верстка также не представляет сложности.</p>
       </div>
@@ -119,6 +118,7 @@
   <section class="projects-wrapper" id="projects">
     <h2 class="big-title">Мои работы</h2>
     <div class="projects-inner">
+
       <a href="1Platforma-energy-audit/" target="_blank">
         <img src="portfolio/images/1platforma-energy-audit.png" alt="Энергоаудит 1Платформа">
         <div class="layer">
@@ -126,19 +126,28 @@
           <p>Верстка по макету</p>
         </div>
       </a>
+
       <a href="Pro-copyrighting_(landing-page)/" target="_blank">
-        <img src="portfolio/images/pro-copyrighting.png" alt="pro-copyrighting">
+        <img src="portfolio/images/pro-copyrighting.png" alt="Pro-Copyrighting">
         <div class="layer">
           <h3>Адаптивный лэндинг-пэйдж для курса Про-Копирайтинг</h3>
           <p>Верстка по макету</p>
         </div>
       </a>
 
+      <a href="https://codepen.io/mak017/pen/QvXRMR" target="_blank">
+        <img src="portfolio/images/responsive-web-app-layout.png" alt="Responsive WEB Application layout">
+        <div class="layer">
+          <h3>Адаптивная вёрстка вэб-приложения</h3>
+          <p>Вёрстка на основе display: grid.</p>
+        </div>
+      </a>
+
       <a href="Project-Places/public/" target="_blank">
-        <img src="portfolio/images/project-places.png" alt="project places">
+        <img src="portfolio/images/project-places.png" alt="Project Places">
         <div class="layer">
           <h3>Портал туристического направления</h3>
-          <p>Мой собственный учебно-игрушечный проект. Постоянно работаю над ним, добавляя новые фичи и страницы.</p>
+          <p>Мой собственный учебно-игрушечный проект.</p>
         </div>
       </a>
 
@@ -158,8 +167,16 @@
         </div>
       </a>
 
+      <a href="https://codepen.io/mak017/pen/WOoodY" target="_blank">
+        <img src="portfolio/images/childbrand-email.png" alt="Responsive WEB Application layout">
+        <div class="layer">
+          <h3>Адаптивный e-mail</h3>
+          <p>Сделано без использования медиа-запросов. Совместимо с Outlook.</p>
+        </div>
+      </a>
+
       <a href="http://codepen.io/mak017/full/GWMLjG/" target="_blank">
-        <img src="portfolio/images/clock.png" alt="clock">
+        <img src="portfolio/images/clock.png" alt="Clock">
         <div class="layer">
           <h3>Рисунок на чистом CSS и SCSS</h3>
           <p>Часы, показывающие реальное время в рамках проекта Daily CSS Images</p>
@@ -167,7 +184,7 @@
       </a>
 
       <a href="http://codepen.io/mak017/full/VPeGNM/" target="_blank">
-        <img src="http://codepen.io/mak017/pen/VPeGNM/image/large.png" alt="tiger">
+        <img src="portfolio/images/tiger-cub.png" alt="Tiger">
         <div class="layer">
           <h3>Рисунок на чистом CSS и SCSS</h3>
           <p>Симпатичный тигренок в рамках проекта Daily CSS Images</p>
@@ -179,7 +196,23 @@
   <section class="contact-wrapper" id="contact">
     <div class="contact-inner">
       <div class="resume">
-        <a href="portfolio/files/resume.pdf" download="resume.pdf">Мое резюме <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+        <a href="#" id="resumes" class="resumes">Мое резюме <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+        <div class="resume__wrap">
+          <div class="resume__type resume__russian">
+            <div class="resume__title">На русском языке:</div>
+            <div class="resume__links">
+              <a href="resume/russian"><i class="fa fa-print" aria-hidden="true"></i> HTML-версия для печати</a>
+              <a href="resume/files/Resume-DenisMakovskyyJuniorFront-endDeveloper(rus).pdf" download><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF-версия</a>
+            </div>
+          </div>
+          <div class="resume__type resume__english">
+            <div class="resume__title">На английском языке:</div>
+            <div class="resume__links">
+              <a href="resume/english"><i class="fa fa-print" aria-hidden="true"></i> HTML-версия для печати</a>
+              <a href="resume/files/Resume-DenisMakovskyyJuniorFront-endDeveloper(eng).pdf" download><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF-версия</a>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="contacts">
         <a href="mailto:makovskyy0983@gmail.com"> <i class="fa fa-envelope-o fa-4x" aria-hidden="true"></i> </a>

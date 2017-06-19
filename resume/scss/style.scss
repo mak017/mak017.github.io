@@ -1,0 +1,416 @@
+@import 'compass';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+
+// Variables
+
+/// Colors
+$black: #000;
+$dark-grey: #333;
+$grey: rgb(50%, 50%, 50%);
+$light-grey: rgb(80%, 80%, 80%);
+$white: #fff;
+$headlines: #00b400;
+
+/// Fonts
+$lato: Lato, sans-serif;
+$roboto: Roboto, sans-serif;
+
+$border: 1px dashed $light-grey;
+
+@include global-reset;
+
+// Fonts
+@include font-face(
+  Lato,
+  $font-files: (
+    url('../fonts/LatoBold.woff2') format('woff2'),
+    url('../fonts/LatoBold.woff') format('woff')
+  ), $weight: 700,
+    $style: normal
+);
+@include font-face(
+  Lato,
+  $font-files: (
+    url('../fonts/LatoRegular.woff2') format('woff2'),
+    url('../fonts/LatoRegular.woff') format('woff')
+  ), $weight: 400,
+    $style: normal
+);
+@include font-face(
+  Roboto,
+  $font-files: (
+    url('../fonts/RobotoBold.woff2') format('woff2'),
+    url('../fonts/RobotoBold.woff') format('woff')
+  ), $weight: 700,
+    $style: normal
+);
+@include font-face(
+  Roboto,
+  $font-files: (
+    url('../fonts/RobotoRegular.woff2') format('woff2'),
+    url('../fonts/RobotoRegular.woff') format('woff')
+  ), $weight: 400,
+    $style: normal
+);
+
+
+// General
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+  color: $dark-grey;
+  font: 15px/1.2 $roboto;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: $black;
+  font: 700 42px/1.08 $lato;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-bottom: 20px;
+  border-bottom: 3px solid $black;
+  font: 700 28px/1.08 $lato;
+  text-transform: uppercase;
+}
+
+h3 {
+  font: 21px/1.08 $lato;
+}
+
+h4 {
+  margin-bottom: 9px;
+  color: $headlines;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+section {
+  padding-bottom: 20px;
+  border-bottom: $border;
+
+  h3 {
+    margin-bottom: 7px;
+    color: $black;
+  }
+
+  ul {
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &:not(:first-child) {
+      margin-top: 7px;
+    }
+  }
+
+  li {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  .date-range {
+    font-size: 11px;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    span {
+      margin-left: 5px;
+    }
+  }
+}
+
+
+// Page
+// Definig grid layout
+.page {
+  display: grid;
+  width: 940px;
+  grid-template-columns: 460px 1fr;
+  grid-gap: 30px;
+  height: 1330px;
+  margin: 13px auto;
+  padding: 70px;
+  background: url('../images/bg2.png') center center / cover $white;
+  box-shadow: 1px 1px 3px 1px $dark-grey;
+
+  &.first {
+    grid-template-rows: 160px 140px 245px 100px 135px 0 130px 65px;
+  }
+
+  &.second {
+    grid-auto-rows: minmax(50px, 450px);
+  }
+}
+
+// Grids for first page
+.main-info {
+  grid-row: 2 / 4;
+}
+
+.skills {
+  grid-row: 3 / 5;
+}
+
+.education {
+  grid-row: 4 / 6;
+}
+
+.first .experience {
+  grid-row: 6 / 9;
+}
+
+.technologies {
+  grid-row: 5 / 7;
+}
+
+.courses {
+  grid-column-start: 2;
+  grid-row-start: 7;
+}
+
+
+// First main block
+main {
+  font-weight: 700;
+
+  h3 {
+    margin-bottom: 20px;
+    color: $headlines;
+  }
+
+  .contacts {
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 12px;
+
+    li {
+      position: relative;
+      width: 50%;
+      margin-bottom: 10px;
+      padding-left: 15px;
+    }
+
+    i {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $headlines;
+    }
+
+    a {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+// Photo
+.photo {
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: url('../images/photo_small2.png') 0 13% / cover;
+}
+
+
+// Languages section
+.languages {
+
+  .block-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    margin-right: auto;
+
+    div {
+
+      &:first-of-type {
+        margin-bottom: 10px;
+        color: $black;
+        font-weight: 700;
+      }
+
+      &:last-of-type {
+        color: $grey;
+        font-size: 13px;
+      }
+    }
+  }
+
+  &__level {
+
+    span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: $black;
+
+      &.filled {
+        background-color: $headlines;
+      }
+    }
+  }
+}
+
+// SKills section
+.skill {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+
+  &:not(:last-child) {
+    border-bottom: $border;
+  }
+
+  &__level {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background-color: $light-grey;
+    border-radius: 3px;
+
+    @at-root %pseudo {
+      content: '';
+      position: absolute;
+    }
+
+    &::before {
+      @extend %pseudo;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: $black;
+      border-radius: inherit;
+
+      .skill.html-css & {
+        width: 70%;
+      }
+
+      .skill.js-jquery & {
+        width: 40%;
+      }
+
+      .skill.sass & {
+        width: 60%;
+      }
+
+      .skill.bootstrap & {
+        width: 50%;
+      }
+
+      .skill.sql & {
+        width: 20%;
+      }
+    }
+
+    &::after {
+      $size: 13px;
+      @extend %pseudo;
+      top: -3px;
+      width: $size;
+      height: $size;
+      border-radius: 50%;
+      background-color: $headlines;
+
+      .skill.html-css & {
+        left: calc(70% - #{$size} / 2);
+      }
+
+      .skill.js-jquery & {
+        left: calc(40% - #{$size} / 2);
+      }
+
+      .skill.sass & {
+        left: calc(60% - #{$size} / 2);
+      }
+
+      .skill.bootstrap & {
+        left: calc(50% - #{$size} / 2);
+      }
+
+      .skill.sql & {
+        left: calc(20% - #{$size} / 2);
+      }
+    }
+  }
+}
+
+.education {
+
+  .institution {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+
+    &:not(:last-child) {
+      border-bottom: $border;
+    }
+  }
+
+  .gpa {
+    width: 30%;
+    margin-left: auto;
+    border-left: 1px solid $black;
+    color: $grey;
+    text-align: center;
+    word-spacing: 6px;
+
+    &__title {
+      font-size: 11px;
+    }
+
+    span {
+      color: $headlines;
+      font-weight: 700;
+    }
+  }
+}
+
+.experience,
+.courses {
+  font-size: 13px;
+}
+
+.job {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+
+  &:not(:last-child) {
+    border-bottom: $border;
+  }
+}
+
+.tech {
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  padding: 7px 10px;
+  border: 1px solid $light-grey;
+  color: $black;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media print {
+  .page {
+    height: 1300px;
+  }
+}
