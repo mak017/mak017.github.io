@@ -1,4 +1,4 @@
-@import 'compass';
+@import 'reset';
 
 @function random-color() {
   @return unquote('rgb(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1})');
@@ -7,8 +7,8 @@
 // Variables
 $black: #000;
 $white: #fff;
-$layer1: rgba(0, 0, 0, .4);
-$layer2: rgba(0, 0, 0, .7);
+$layer1: rgba(0, 0, 0, 0.4);
+$layer2: rgba(0, 0, 0, 0.7);
 $primary-color: random-color(); // #0e3e4e
 $secondary-color: random-color();
 $white-text: #fff8e1;
@@ -84,10 +84,10 @@ body {
 }
 
 .links {
-  @include display-flex;
-  @include justify-content(center);
-  @include align-items(center);
+  display: flex;
   position: fixed;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100vh;
   margin-top: 60px;
@@ -126,18 +126,18 @@ body {
   color: $white-text;
 
   &-wrapper {
-    @include display-flex;
-    @include justify-content(center);
-    @include align-items(center);
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: center;
     width: 100%;
   }
 
   &-inner {
-    @include display-flex;
-    @include flex-direction(column);
-    @include justify-content(center);
-    @include align-items(center);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 70%;
     height: 500px;
     overflow: hidden;
@@ -196,10 +196,10 @@ body {
 }
 
 .projects-wrapper {
-  @include display-flex;
-  @include flex-direction(column);
-  @include justify-content(center);
-  @include align-items(center);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: auto;
   padding: 5% 0;
@@ -207,10 +207,10 @@ body {
 }
 
 .projects-inner {
-  @include display-flex;
-  @include flex-flow(row wrap);
-  @include justify-content(center);
-  @include align-items(center);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   height: auto;
   margin: 0 auto;
@@ -235,13 +235,13 @@ body {
   }
 
   .layer {
-    @include transition(opacity .4s);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     padding: 5%;
+    transition: opacity 0.4s;
     opacity: 0;
 
     h3 {
@@ -271,7 +271,7 @@ body {
 
 .big-title {
   margin: 2%;
-  padding-bottom: .9%;
+  padding-bottom: 0.9%;
   border-bottom: 1px solid $primary-color;
   color: $primary-color;
   font-size: 40px;
@@ -285,9 +285,9 @@ body {
 }
 
 .contact-wrapper {
-  @include display-flex;
-  @include justify-content(center);
-  @include align-items(center);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 3% 0;
   background: $primary-color;
@@ -301,15 +301,15 @@ body {
 
 .contact-inner {
   .contacts {
-    @include display-flex;
-    @include flex-flow(row wrap);
-    @include justify-content(center);
-    @include align-items(center);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
   }
 
   a {
-    @include transition(color .4s);
     margin: 15px;
+    transition: color 0.4s;
     color: $white-text;
     text-decoration: none;
 
@@ -328,7 +328,7 @@ body {
     .resume {
       font-size: 25px;
     }
-     
+
     a {
       display: block;
       text-decoration: underline;
@@ -366,10 +366,10 @@ body {
 }
 
 .fa-chevron-circle-down {
-  @include transition(transform .3s);
+  transition: transform 0.3s;
 
   .active & {
-    @include transform(rotate(90deg));
+    transform: rotate(90deg);
   }
 }
 
@@ -408,8 +408,12 @@ $factor-size: 3vw;
   $new-gradient: ();
   @for $i from 1 through 50 {
     $this-color: nth($list, random(length($list)));
-    $new-gradient: append($new-gradient, ($this-color (($i - 1)*$factor-size), $this-color ($i*$factor-size)), 'comma');
-    }
+    $new-gradient: append(
+      $new-gradient,
+       ($this-color (($i - 1)*$factor-size), $this-color ($i*$factor-size)),
+      'comma'
+    );
+  }
   @return $new-gradient;
 }
 
@@ -417,14 +421,14 @@ $factor-size: 3vw;
   $bg-positions: ();
   $bg-pattern: ();
   @for $i from 0 through 50 {
-    $bg-positions: append($bg-positions, (0 ($i * $factor-size)), 'comma');
+    $bg-positions: append($bg-positions,  (0 ($i * $factor-size)), 'comma');
     $bg-pattern: append($bg-pattern, linear-gradient(90deg, build-colors($list)), 'comma');
-    }
-  background-image:       $bg-pattern;
-  background-repeat:      no-repeat;
-  background-position:    $bg-positions;
-  background-size:        100% $factor-size;
-  background-blend-mode:  soft-light;
+  }
+  background-image: $bg-pattern;
+  background-repeat: no-repeat;
+  background-position: $bg-positions;
+  background-size: 100% $factor-size;
+  background-blend-mode: soft-light;
 }
 
 .mosaic {
