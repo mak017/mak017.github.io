@@ -1,14 +1,17 @@
 // sass-lint:disable no-misspelled-properties
 
-@import 'reset';
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import "reset";
+
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 // Variables
 $html-css-level: 90%;
-$js-level: 60%;
+$js-level: 75%;
 $css-preprocessors-level: 70%;
 $bootstrap-level: 50%;
-$react-level: 40%;
+$react-level: 75%;
+$redux-level: 60%;
+$next-level: 50%;
 $vue-level: 20%;
 
 /// Colors
@@ -22,19 +25,20 @@ $headlines: #00b400;
 /// Fonts
 $lato: Lato, sans-serif;
 $roboto: Roboto, sans-serif;
-
 $border: 1px dashed $light-grey;
 
 // Mixins
 @mixin font-face($name, $font-files, $eot: false, $weight: false, $style: false) {
-  $iefont: unquote('#{$eot}?#iefix');
+  $iefont: unquote("#{$eot}?#iefix");
+
   @font-face {
     font-family: quote($name);
-    @if $eot {
-      src: font-url($eot);
-      $font-files: font-url($iefont) unquote('format("eot")'), $font-files;
-    }
     src: $font-files;
+    @if $eot {
+      $font-files: font-url($iefont) unquote("format(\"eot\")"), $font-files;
+
+      src: font-url($eot);
+    }
     @if $weight {
       font-weight: $weight;
     }
@@ -47,105 +51,124 @@ $border: 1px dashed $light-grey;
 // Fonts
 @include font-face(
   Lato,
-  $font-files:
-    (url('../fonts/LatoBold.woff2') format('woff2'), url('../fonts/LatoBold.woff') format('woff')),
+  $font-files: (
+    url("../fonts/LatoBold.woff2") format("woff2"),
+    url("../fonts/LatoBold.woff") format("woff")
+  ),
   $weight: 700,
   $style: normal
 );
 @include font-face(
   Lato,
-  $font-files:
-    (
-      url('../fonts/LatoRegular.woff2') format('woff2'),
-      url('../fonts/LatoRegular.woff') format('woff')
-    ),
+  $font-files: (
+    url("../fonts/LatoRegular.woff2") format("woff2"),
+    url("../fonts/LatoRegular.woff") format("woff")
+  ),
   $weight: 400,
   $style: normal
 );
 @include font-face(
   Roboto,
-  $font-files:
-    (
-      url('../fonts/RobotoBold.woff2') format('woff2'),
-      url('../fonts/RobotoBold.woff') format('woff')
-    ),
+  $font-files: (
+    url("../fonts/RobotoBold.woff2") format("woff2"),
+    url("../fonts/RobotoBold.woff") format("woff")
+  ),
   $weight: 700,
   $style: normal
 );
 @include font-face(
   Roboto,
-  $font-files:
-    (
-      url('../fonts/RobotoRegular.woff2') format('woff2'),
-      url('../fonts/RobotoRegular.woff') format('woff')
-    ),
+  $font-files: (
+    url("../fonts/RobotoRegular.woff2") format("woff2"),
+    url("../fonts/RobotoRegular.woff") format("woff")
+  ),
   $weight: 400,
   $style: normal
 );
+
 // General
 * {
   box-sizing: border-box;
 }
+
 body {
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=");
   color: $dark-grey;
   font: 15px/1.2 $roboto;
 }
+
 h1 {
   margin-bottom: 10px;
   color: $black;
   font: 700 42px/1.08 $lato;
   text-transform: uppercase;
 }
+
 h2 {
   margin-bottom: 20px;
   border-bottom: 3px solid $black;
   font: 700 28px/1.08 $lato;
   text-transform: uppercase;
 }
+
 h3 {
   font: 21px/1.08 $lato;
 }
+
 h4 {
   margin-bottom: 9px;
   color: $headlines;
   font-size: 15px;
   font-weight: 700;
 }
+
 a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
 }
+
 section {
   padding-bottom: 20px;
   border-bottom: $border;
+
   h3 {
     margin-bottom: 7px;
     color: $black;
   }
+
+  p +p {
+    margin-top: 10px;
+  }
+
   ul {
     &:not(:last-child) {
       margin-bottom: 20px;
     }
+
     &:not(:first-child) {
       margin-top: 7px;
     }
   }
+
   li {
-    list-style-type: disc;
     list-style-position: inside;
+    list-style-type: disc;
   }
+
   .date-range {
     font-size: 11px;
+
     &:not(:last-child) {
       margin-bottom: 10px;
     }
+
     span {
       margin-left: 5px;
     }
   }
 }
+
 // Page
 // Defining grid layout
 .page {
@@ -156,101 +179,121 @@ section {
   height: 1330px;
   margin: 13px auto;
   padding: 70px;
-  background: url('../images/bg2.png') center center / cover $white;
+  background: url("../images/bg2.png") center center / cover $white;
   box-shadow: 1px 1px 3px 1px $dark-grey;
+
   &.first {
-    grid-template-rows: 150px 365px 165px 105px 145px 150px;
+    grid-template-rows: 150px 565px 125px 175px 100px;
   }
+
   &.second {
     display: none;
     grid-auto-rows: minmax(50px, 450px);
   }
 }
+
 // Grids for first page
 .main-info {
   grid-row: 2;
 }
+
 .skills {
-  grid-row: 3 / 6;
-  margin-bottom: 35px;
+  display: none;
+  grid-row: 3 / 5;
 }
+
 .education {
-  grid-row: 6 / 7;
-  grid-column-start: 2;
+  grid-column-start: 1;
+  grid-row: 4;
 }
+
 .first {
   .experience {
-    grid-row: 2 / 4;
+    grid-row: 2 / 6;
   }
 }
+
 .technologies {
   grid-row: 6;
 }
-.courses {
-  grid-column-start: 2;
-  grid-row: 5;
-}
+
+// .courses {
+//   grid-column-start: 2;
+//   grid-row: 5;
+// }
+
 // First main block
 main {
   font-weight: 700;
+
   h3 {
     margin-bottom: 20px;
     color: $headlines;
   }
+
   .contacts {
     display: flex;
     flex-flow: row wrap;
     font-size: 12px;
+
     li {
       position: relative;
       width: 50%;
       margin-bottom: 10px;
       padding-left: 15px;
     }
+
     i {
       position: absolute;
       top: 0;
       left: 0;
       color: $headlines;
     }
+
     a {
       display: block;
       margin-bottom: 5px;
     }
   }
 }
+
 // Photo
 .photo {
   width: 150px;
   height: 150px;
   margin-left: auto;
   border-radius: 50%;
-  background: url('../images/photo_small2.png') 0 13% / cover;
+  background: url("../images/photo_small2.png") 0 13% / cover;
 }
+
 // Languages section
 .languages {
   .block-wrap {
     display: flex;
     align-items: center;
 
-    + .block-wrap {
+    +.block-wrap {
       margin-top: 10px;
     }
   }
+
   &__title {
     margin-right: auto;
+
     div {
       &:first-of-type {
         margin-bottom: 10px;
         color: $black;
         font-weight: 700;
       }
+
       &:last-of-type {
         color: $grey;
         font-size: 13px;
       }
     }
   }
+
   &__level {
     span {
       display: inline-block;
@@ -258,84 +301,123 @@ main {
       height: 18px;
       border-radius: 50%;
       background-color: $black;
+
       &.filled {
         background-color: $headlines;
       }
     }
   }
 }
+
 // SKills section
 .skill {
   margin-bottom: 15px;
   padding-bottom: 15px;
+
   &:not(:last-child) {
     border-bottom: $border;
   }
+
   &__level {
     position: relative;
     width: 100%;
     height: 6px;
     border-radius: 3px;
     background-color: $light-grey;
+
     @at-root %pseudo {
+      content: "";
       position: absolute;
-      content: '';
     }
+
     &::before {
       @extend %pseudo;
+
       top: 0;
       left: 0;
       height: 100%;
       border-radius: inherit;
       background-color: $black;
+
       .skill.html-css & {
         width: $html-css-level;
       }
-      .skill.js-jquery & {
+
+      .skill.js & {
         width: $js-level;
       }
+
       .skill.sass & {
         width: $css-preprocessors-level;
       }
+
       .skill.bootstrap & {
         width: $bootstrap-level;
       }
+
       .skill.react & {
         width: $react-level;
       }
+
+      .skill.redux & {
+        width: $redux-level;
+      }
+
+      .skill.next & {
+        width: $next-level;
+      }
+
       .skill.vue & {
         width: $vue-level;
       }
     }
+
     &::after {
-      @extend %pseudo;
       $size: 13px;
+
+@extend %pseudo;
+
       top: -3px;
       width: $size;
       height: $size;
       border-radius: 50%;
       background-color: $headlines;
+
       .skill.html-css & {
         left: calc(#{$html-css-level} - #{$size} / 2);
       }
-      .skill.js-jquery & {
+
+      .skill.js & {
         left: calc(#{$js-level} - #{$size} / 2);
       }
+
       .skill.sass & {
         left: calc(#{$css-preprocessors-level} - #{$size} / 2);
       }
+
       .skill.bootstrap & {
         left: calc(#{$bootstrap-level} - #{$size} / 2);
       }
+
       .skill.react & {
         left: calc(#{$react-level} - #{$size} / 2);
       }
+
+      .skill.redux & {
+        left: calc(#{$redux-level} - #{$size} / 2);
+      }
+
+      .skill.next & {
+        left: calc(#{$next-level} - #{$size} / 2);
+      }
+
       .skill.vue & {
         left: calc(#{$vue-level} - #{$size} / 2);
       }
     }
   }
 }
+
 .education {
   .gpa {
     width: 30%;
@@ -344,40 +426,48 @@ main {
     color: $grey;
     text-align: center;
     word-spacing: 6px;
+
     &__title {
       font-size: 11px;
     }
+
     span {
       color: $headlines;
       font-weight: 700;
     }
   }
 }
+
 .institution {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 15px;
+
   &:not(:last-child) {
     border-bottom: $border;
   }
 }
-.experience,
-.courses {
-  font-size: 13px;
-}
+
+// .experience, .courses {
+//   font-size: 13px;
+// }
+
 .job {
   margin-bottom: 20px;
   padding-bottom: 15px;
+
   &:not(:last-child) {
     border-bottom: $border;
   }
 }
+
 .technologies {
   .block-wrap {
     margin-right: -10px;
   }
 }
+
 .tech {
   display: inline-block;
   margin: 0 10px 10px 0;
@@ -387,6 +477,7 @@ main {
   font-size: 14px;
   font-weight: 700;
 }
+
 @media print {
   .page {
     height: 1300px;
