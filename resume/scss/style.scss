@@ -120,6 +120,12 @@ h4 {
   color: $headlines;
   font-size: 15px;
   font-weight: 700;
+
+  img {
+    width: 20px;
+    margin-right: 4px;
+    vertical-align: bottom;
+  }
 }
 
 a {
@@ -183,7 +189,7 @@ section {
   box-shadow: 1px 1px 3px 1px $dark-grey;
 
   &.first {
-    grid-template-rows: 150px 565px 125px 175px 100px;
+    grid-template-rows: 150px 535px 125px 175px 120px;
   }
 
   &.second {
@@ -459,6 +465,15 @@ main {
 
   &:not(:last-child) {
     border-bottom: $border;
+  }
+
+  &-link {
+    color: #333;
+    font-size: 0.85em;
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
 
