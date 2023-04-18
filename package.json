@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.29.1",
     "css-mqpacker": "^6.0.2",
     "gulp": "github:gulpjs/gulp#a4e8d48",
     "gulp-cache": "^1.0.2",
