@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "set NODE_ENV=development & gulp",
-    "build": "set NODE_ENV=production & gulp --production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "set NODE_ENV=production & gulp --production"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +20,6 @@
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",
     "gulp-rename": "^1.2.3",
-    "gulp-sass": "^3.2.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",

@@ -3,7 +3,7 @@ const browserSync = require('browser-sync').create();
 const gutil = require('gulp-util');
 const minimist = require('minimist');
 merge = require('merge-stream');
-const sass = require('gulp-sass');
+// const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const mqpacker = require('css-mqpacker');
@@ -24,47 +24,47 @@ const folders = ['portfolio', 'resume'];
 //   console.log('Cache cleared');
 // });
 
-gulp.task('sass', function() {
-  const processors = [
-    cssnext({
-      browsers: ['last 2 version', '> 1%']
-    }),
-    mqpacker({
-      sort: sortCSSmq
-    })
-  ];
+// gulp.task('sass', function() {
+//   const processors = [
+//     cssnext({
+//       browsers: ['last 2 version', '> 1%']
+//     }),
+//     mqpacker({
+//       sort: sortCSSmq
+//     })
+//   ];
 
-  const tasks = folders.map(function(element) {
-    return gulp
-      .src(element + '/scss/!(_)*.scss', {
-        base: element + '/scss'
-      })
-      .pipe(
-        plumber(function(error) {
-          console.log('sass:', error.message);
-          this.emit('end');
-        })
-      )
-      .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
-      .pipe(sass().on('error', sass.logError))
-      .pipe(postcss(processors))
-      .pipe(cleanCSS())
-      .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write())
-      .pipe(plumber.stop())
-      .pipe(gulp.dest(element + '/css'))
-      .pipe(browserSync.stream());
-  });
-  return merge(tasks);
-});
+//   const tasks = folders.map(function(element) {
+//     return gulp
+//       .src(element + '/scss/!(_)*.scss', {
+//         base: element + '/scss'
+//       })
+//       .pipe(
+//         plumber(function(error) {
+//           console.log('sass:', error.message);
+//           this.emit('end');
+//         })
+//       )
+//       .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
+//       .pipe(sass().on('error', sass.logError))
+//       .pipe(postcss(processors))
+//       .pipe(cleanCSS())
+//       .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write())
+//       .pipe(plumber.stop())
+//       .pipe(gulp.dest(element + '/css'))
+//       .pipe(browserSync.stream());
+//   });
+//   return merge(tasks);
+// });
 
-gulp.task('uglify', function() {
+gulp.task('uglify', function () {
   return gulp
     .src('portfolio/js/main.js')
     .pipe(
-      plumber(function(error) {
+      plumber(function (error) {
         console.log('uglify:', error.message);
         this.emit('end');
-      })
+      }),
     )
     .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
     .pipe(gutil.env.production ? uglify() : gutil.noop())
@@ -73,22 +73,22 @@ gulp.task('uglify', function() {
     .pipe(plumber.stop())
     .pipe(
       rename({
-        suffix: '.min'
-      })
+        suffix: '.min',
+      }),
     )
     .pipe(gulp.dest('portfolio/js'))
-    .on('end', function() {
+    .on('end', function () {
       browserSync.reload();
     });
 });
 
-gulp.task('img', function() {
+gulp.task('img', function () {
   return gulp
     .src(['portfolio', 'resume'] + '/images/**/*.{jpg,png,svg}')
     .pipe(
       debug({
-        title: 'img:'
-      })
+        title: 'img:',
+      }),
     )
     .pipe(
       imagemin([
@@ -97,39 +97,39 @@ gulp.task('img', function() {
           loops: 4,
           min: 50,
           max: 95,
-          quality: 'high'
+          quality: 'high',
         }),
         imagemin.optipng({
-          optimizationLevel: 5
+          optimizationLevel: 5,
         }),
-        imagemin.svgo()
-      ])
+        imagemin.svgo(),
+      ]),
     )
     .pipe(
       rename({
-        suffix: '.min'
-      })
+        suffix: '.min',
+      }),
     )
     .pipe(gulp.dest('./'))
-    .on('end', function() {
+    .on('end', function () {
       browserSync.reload();
     });
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('portfolio/js/main.js', gulp.series('uglify'));
   gulp.watch(['portfolio', 'resume'] + '/images/**/*.{jpg,png,svg}', gulp.series('img'));
-  gulp.watch(['portfolio/scss/*.scss', 'resume/scss/*.scss'], gulp.series('sass'));
+  // gulp.watch(['portfolio/scss/*.scss', 'resume/scss/*.scss'], gulp.series('sass'));
 
   browserSync.init({
     server: {
-      baseDir: './'
-    }
+      baseDir: './',
+    },
   });
   browserSync.watch(['./*.html', 'resume/**/*.html']).on('change', browserSync.reload);
 });
 
-gulp.task('default', gulp.series(gulp.parallel('uglify', 'sass'), 'watch'));
+gulp.task('default', gulp.series(gulp.parallel('uglify'), 'watch'));
 
 console.log('gutil:', gutil.env.production);
 
