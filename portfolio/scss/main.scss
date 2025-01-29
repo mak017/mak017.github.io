@@ -1,7 +1,13 @@
-@import 'reset';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'reset';
 
 @function random-color() {
-  @return unquote('rgb(#{random(256) - 1}, #{random(256) - 1}, #{random(256) - 1})');
+  @return string.unquote(
+    'rgb(#{math.random(256) - 1}, #{math.random(256) - 1}, #{math.random(256) - 1})'
+  );
 }
 
 // Variables
@@ -15,7 +21,7 @@ $white-text: #fff8e1;
 $projects-bg-color: $secondary-color; // #c6dabf
 $link-hover: $secondary-color; // rgb(0, 148, 255)
 
-$random-angle: random(4) * 45;
+$random-angle: math.random(4) * 45;
 
 @mixin random-gradient {
   background: linear-gradient(#{$random-angle}deg, $primary-color, $secondary-color);
@@ -27,7 +33,7 @@ $random-angle: random(4) * 45;
   }
 }
 
-@include global-reset;
+@include reset.global-reset;
 
 * {
   box-sizing: border-box;
@@ -384,7 +390,7 @@ footer {
 // Mosaic generator
 // Taken from http://codepen.io/tadaima/pen/ryNWpe
 @function alpha-random() {
-  @return random(10) / 100;
+  @return math.div(math.random(10), 100);
 }
 
 $color-list: (
@@ -397,7 +403,7 @@ $color-list: (
 $factor-size: 3vw;
 
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
     @return $number / ($number * 0 + 1);
   }
   @return $number;
@@ -407,10 +413,10 @@ $factor-size: 3vw;
   $this-color: '';
   $new-gradient: ();
   @for $i from 1 through 50 {
-    $this-color: nth($list, random(length($list)));
-    $new-gradient: append(
+    $this-color: list.nth($list, math.random(list.length($list)));
+    $new-gradient: list.append(
       $new-gradient,
-       ($this-color (($i - 1)*$factor-size), $this-color ($i*$factor-size)),
+      ($this-color (($i - 1) * $factor-size), $this-color ($i * $factor-size)),
       'comma'
     );
   }
@@ -421,8 +427,8 @@ $factor-size: 3vw;
   $bg-positions: ();
   $bg-pattern: ();
   @for $i from 0 through 50 {
-    $bg-positions: append($bg-positions,  (0 ($i * $factor-size)), 'comma');
-    $bg-pattern: append($bg-pattern, linear-gradient(90deg, build-colors($list)), 'comma');
+    $bg-positions: list.append($bg-positions, (0 ($i * $factor-size)), 'comma');
+    $bg-pattern: list.append($bg-pattern, linear-gradient(90deg, build-colors($list)), 'comma');
   }
   background-image: $bg-pattern;
   background-repeat: no-repeat;

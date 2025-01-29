@@ -3,7 +3,7 @@ const browserSync = require('browser-sync').create();
 const gutil = require('gulp-util');
 const minimist = require('minimist');
 merge = require('merge-stream');
-// const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const mqpacker = require('css-mqpacker');
@@ -19,43 +19,43 @@ const cache = require('gulp-cache');
 
 const folders = ['portfolio', 'resume'];
 
-// gulp.task('clear', function(done) {
-//   cache.clearAll(done);
-//   console.log('Cache cleared');
-// });
+gulp.task('clear', function (done) {
+  cache.clearAll(done);
+  console.log('Cache cleared');
+});
 
-// gulp.task('sass', function() {
-//   const processors = [
-//     cssnext({
-//       browsers: ['last 2 version', '> 1%']
-//     }),
-//     mqpacker({
-//       sort: sortCSSmq
-//     })
-//   ];
+gulp.task('sass', function () {
+  const processors = [
+    cssnext({
+      browsers: ['last 2 version', '> 1%'],
+    }),
+    mqpacker({
+      sort: sortCSSmq,
+    }),
+  ];
 
-//   const tasks = folders.map(function(element) {
-//     return gulp
-//       .src(element + '/scss/!(_)*.scss', {
-//         base: element + '/scss'
-//       })
-//       .pipe(
-//         plumber(function(error) {
-//           console.log('sass:', error.message);
-//           this.emit('end');
-//         })
-//       )
-//       .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
-//       .pipe(sass().on('error', sass.logError))
-//       .pipe(postcss(processors))
-//       .pipe(cleanCSS())
-//       .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write())
-//       .pipe(plumber.stop())
-//       .pipe(gulp.dest(element + '/css'))
-//       .pipe(browserSync.stream());
-//   });
-//   return merge(tasks);
-// });
+  const tasks = folders.map(function (element) {
+    return gulp
+      .src(element + '/scss/!(_)*.scss', {
+        base: element + '/scss',
+      })
+      .pipe(
+        plumber(function (error) {
+          console.log('sass:', error.message);
+          this.emit('end');
+        }),
+      )
+      .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(postcss(processors))
+      .pipe(cleanCSS())
+      .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write())
+      .pipe(plumber.stop())
+      .pipe(gulp.dest(element + '/css'))
+      .pipe(browserSync.stream());
+  });
+  return merge(tasks);
+});
 
 gulp.task('uglify', function () {
   return gulp
@@ -119,7 +119,7 @@ gulp.task('img', function () {
 gulp.task('watch', function () {
   gulp.watch('portfolio/js/main.js', gulp.series('uglify'));
   gulp.watch(['portfolio', 'resume'] + '/images/**/*.{jpg,png,svg}', gulp.series('img'));
-  // gulp.watch(['portfolio/scss/*.scss', 'resume/scss/*.scss'], gulp.series('sass'));
+  gulp.watch(['portfolio/scss/*.scss', 'resume/scss/*.scss'], gulp.series('sass'));
 
   browserSync.init({
     server: {

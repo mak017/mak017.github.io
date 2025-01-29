@@ -1,8 +1,9 @@
 // sass-lint:disable no-misspelled-properties
 
-@import "reset";
+@use 'sass:string';
+@use 'reset';
 
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
 // Variables
 $html-css-level: 90%;
@@ -29,13 +30,13 @@ $border: 1px dashed $light-grey;
 
 // Mixins
 @mixin font-face($name, $font-files, $eot: false, $weight: false, $style: false) {
-  $iefont: unquote("#{$eot}?#iefix");
+  $iefont: string.unquote('#{$eot}?#iefix');
 
   @font-face {
-    font-family: quote($name);
+    font-family: string.quote($name);
     src: $font-files;
     @if $eot {
-      $font-files: font-url($iefont) unquote("format(\"eot\")"), $font-files;
+      $font-files: font-url($iefont) string.unquote('format("eot")'), $font-files;
 
       src: font-url($eot);
     }
@@ -47,13 +48,13 @@ $border: 1px dashed $light-grey;
     }
   }
 }
-@include global-reset;
+@include reset.global-reset;
 // Fonts
 @include font-face(
   Lato,
   $font-files: (
-    url("../fonts/LatoBold.woff2") format("woff2"),
-    url("../fonts/LatoBold.woff") format("woff")
+    url('../fonts/LatoBold.woff2') format('woff2'),
+    url('../fonts/LatoBold.woff') format('woff')
   ),
   $weight: 700,
   $style: normal
@@ -61,8 +62,8 @@ $border: 1px dashed $light-grey;
 @include font-face(
   Lato,
   $font-files: (
-    url("../fonts/LatoRegular.woff2") format("woff2"),
-    url("../fonts/LatoRegular.woff") format("woff")
+    url('../fonts/LatoRegular.woff2') format('woff2'),
+    url('../fonts/LatoRegular.woff') format('woff')
   ),
   $weight: 400,
   $style: normal
@@ -70,8 +71,8 @@ $border: 1px dashed $light-grey;
 @include font-face(
   Roboto,
   $font-files: (
-    url("../fonts/RobotoBold.woff2") format("woff2"),
-    url("../fonts/RobotoBold.woff") format("woff")
+    url('../fonts/RobotoBold.woff2') format('woff2'),
+    url('../fonts/RobotoBold.woff') format('woff')
   ),
   $weight: 700,
   $style: normal
@@ -79,8 +80,8 @@ $border: 1px dashed $light-grey;
 @include font-face(
   Roboto,
   $font-files: (
-    url("../fonts/RobotoRegular.woff2") format("woff2"),
-    url("../fonts/RobotoRegular.woff") format("woff")
+    url('../fonts/RobotoRegular.woff2') format('woff2'),
+    url('../fonts/RobotoRegular.woff') format('woff')
   ),
   $weight: 400,
   $style: normal
@@ -92,7 +93,7 @@ $border: 1px dashed $light-grey;
 }
 
 body {
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=");
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
   color: $dark-grey;
   font: 15px/1.2 $roboto;
 }
@@ -143,7 +144,7 @@ section {
     color: $black;
   }
 
-  p +p {
+  p + p {
     margin-top: 10px;
   }
 
@@ -185,11 +186,12 @@ section {
   height: 1330px;
   margin: 13px auto;
   padding: 70px;
-  background: url("../images/bg2.png") center center / cover $white;
+  background: url('../images/bg2.png') center center / cover $white;
   box-shadow: 1px 1px 3px 1px $dark-grey;
 
   &.first {
-    grid-template-rows: 150px 535px 125px 175px 120px;
+    grid-template-rows: 210px 215px 235px 185px 135px 130px;
+    line-height: 1.5;
   }
 
   &.second {
@@ -215,7 +217,7 @@ section {
 
 .first {
   .experience {
-    grid-row: 2 / 6;
+    grid-row: 2 / 7;
   }
 }
 
@@ -239,6 +241,7 @@ main {
 
   .contacts {
     display: flex;
+    width: 130%;
     flex-flow: row wrap;
     font-size: 12px;
 
@@ -251,14 +254,14 @@ main {
 
     i {
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 0;
+      transform: translateY(-50%);
       color: $headlines;
     }
 
     a {
       display: block;
-      margin-bottom: 5px;
     }
   }
 }
@@ -269,7 +272,14 @@ main {
   height: 150px;
   margin-left: auto;
   border-radius: 50%;
-  background: url("../images/photo_small2.png") 0 13% / cover;
+  overflow: hidden;
+  background: url('../images/photo_small2.png') 0 13% / cover;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 // Languages section
@@ -278,7 +288,7 @@ main {
     display: flex;
     align-items: center;
 
-    +.block-wrap {
+    + .block-wrap {
       margin-top: 10px;
     }
   }
@@ -332,7 +342,7 @@ main {
     background-color: $light-grey;
 
     @at-root %pseudo {
-      content: "";
+      content: '';
       position: absolute;
     }
 
@@ -381,7 +391,7 @@ main {
     &::after {
       $size: 13px;
 
-@extend %pseudo;
+      @extend %pseudo;
 
       top: -3px;
       width: $size;
